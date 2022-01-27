@@ -1,0 +1,714 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.8">
+    
+    
+      
+        <title>Simple Wallet - Devkit Wallet Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6e60f8b8.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#building-a-simple-testnet-wallet" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Devkit Wallet Documentation" class="md-header__button md-logo" aria-label="Devkit Wallet Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.61 15.15c-.46 0-.84-.37-.84-.83s.38-.82.84-.82c.46 0 .84.36.84.82 0 .46-.38.83-.84.83m-9.2 0c-.46 0-.84-.37-.84-.83 0-.46.38-.82.84-.82.46 0 .83.36.83.82 0 .46-.37.83-.83.83m9.5-5.01 1.67-2.88c.09-.17.03-.38-.13-.47-.17-.1-.38-.04-.45.13l-1.71 2.91A10.15 10.15 0 0 0 12 8.91c-1.53 0-3 .33-4.27.91L6.04 6.91a.334.334 0 0 0-.47-.13c-.17.09-.22.3-.13.47l1.66 2.88C4.25 11.69 2.29 14.58 2 18h20c-.28-3.41-2.23-6.3-5.09-7.86z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Devkit Wallet Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Simple Wallet
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../ui/" class="md-tabs__link">
+      User Interface
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  <li class="md-tabs__item">
+    <a href="./" class="md-tabs__link md-tabs__link--active">
+      Simple Wallet
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Devkit Wallet Documentation" class="md-nav__button md-logo" aria-label="Devkit Wallet Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.61 15.15c-.46 0-.84-.37-.84-.83s.38-.82.84-.82c.46 0 .84.36.84.82 0 .46-.38.83-.84.83m-9.2 0c-.46 0-.84-.37-.84-.83 0-.46.38-.82.84-.82.46 0 .83.36.83.82 0 .46-.37.83-.83.83m9.5-5.01 1.67-2.88c.09-.17.03-.38-.13-.47-.17-.1-.38-.04-.45.13l-1.71 2.91A10.15 10.15 0 0 0 12 8.91c-1.53 0-3 .33-4.27.91L6.04 6.91a.334.334 0 0 0-.47-.13c-.17.09-.22.3-.13.47l1.66 2.88C4.25 11.69 2.29 14.58 2 18h20c-.28-3.41-2.23-6.3-5.09-7.86z"/></svg>
+
+    </a>
+    Devkit Wallet Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ui/" class="md-nav__link">
+        User Interface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Simple Wallet
+      </a>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+<h1 id="building-a-simple-testnet-wallet">Building a Simple Testnet Wallet</h1>
+<p>This page is the second part of a walkthrough tutorial of the <a href="https://github.com/thunderbiscuit/devkit-wallet">DevKit Wallet codebase</a>.</p>
+<p>Note that this page concerns itself with the <code>simple-wallet</code> branch of the repository.</p>
+<p>We break the journey of building the wallet into 6 distinct steps:
+1. Create a Wallet object with the Repository design pattern
+2. Implement receive and sync functionalities
+3. Implement send functionality
+4. Query and display transaction history
+5. Display recovery phrase
+6. Implement wallet recovery from BIP39 words</p>
+<p>Each task is associated with a tag, and you can checkout the codebase at any of those tasks by checking out the associated tag (<code>git checkout task-sw1</code> for task 1 for example).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>task-sw1        add wallet and repository objects
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>task-sw2        implement receive and sync
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>task-sw3        implement send
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>task-sw4        add transaction <span class="nb">history</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>task-sw5        display recovery phrase
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>task-sw6        recover wallet
+</code></pre></div>
+<h1 id="task-1-add-wallet-and-repository-objects"><a href="https://github.com/thunderbiscuit/devkit-wallet/tree/task-sw1">Task 1</a>: Add Wallet and Repository objects</h1>
+<p>This is where things get interesting on the bitcoin side of things. This task introduces 2 new objects: the <code>Wallet</code> object and the <code>Repository</code> object.</p>
+<p>Both are initialized on startup by the <code>SobiWalletApplication</code> class, with some properties they need to function (wallet path and shared preferences respectively).</p>
+<h2 id="wallet-object">Wallet object</h2>
+<p>The <code>Wallet</code> class is our window to the bitcoindevkit. It's the only class that interacts with the bitcoindevkit direclty and you'll find in there most of the API. Methods like <code>createWallet()</code>, <code>loadExistingWallet()</code>, and <code>recoverWallet()</code> allow you to generate/recover wallets on startup, and methods like <code>sync()</code>, <code>getNewAddress()</code>, and <code>getBalance()</code> provide the necessary interactions one would expect from a bitcoin library.</p>
+<p>Note that because the bitcoindevkit is a native library (it is not written in Kotlin/Java and is provided as binaries to the OS), the library get "loaded" on initialization through the <code>init</code> block:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">object</span> <span class="nc">Wallet</span> <span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="kd">private</span> <span class="kd">val</span> <span class="nv">lib</span><span class="p">:</span> <span class="n">Lib</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">init</span> <span class="p">{</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="c1">// load bitcoindevkit native library</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="n">Lib</span><span class="p">.</span><span class="na">load</span><span class="p">()</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="n">lib</span> <span class="o">=</span> <span class="n">Lib</span><span class="p">()</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="p">}</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="p">}</span>
+</code></pre></div>
+The library is then accessible throughout the class, and most methods use it like so:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">fun</span> <span class="nf">getNewAddress</span><span class="p">():</span> <span class="kt">String</span> <span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="k">return</span> <span class="n">lib</span><span class="p">.</span><span class="na">get_new_address</span><span class="p">(</span><span class="n">walletPtr</span><span class="p">)</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">}</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="kd">fun</span> <span class="nf">getBalance</span><span class="p">():</span> <span class="kt">Long</span> <span class="p">{</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="k">return</span> <span class="n">lib</span><span class="p">.</span><span class="na">get_balance</span><span class="p">(</span><span class="n">walletPtr</span><span class="p">)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">}</span>
+</code></pre></div></p>
+<h2 id="repository-object">Repository object</h2>
+<p>The <em>Repository</em> design pattern is very common in Android applications. The idea is to create a layer of separation between the UI (activities, fragments) and the data they need to function. A <code>Repository</code> class is often used as the bridge between the two. For example, a fragment might need to query a list of friends the user has, and that list might be available from different locations (say a ping to a microservice, or a lookup in a local cache). It's important to pull that sort of decision/code away from UI fragments. This is typically the sort of thing that the Repository will do; make decisions as to where and how to get data for the UI fragments that request it. </p>
+<p>For us this shows up when the <code>DispatchActivity</code> tries to decide if the user already has a wallet initialized upon launch. In this case the activity simply asks the <code>Repository</code> the question
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">Repository</span><span class="p">.</span><span class="na">doesWalletExist</span><span class="p">()</span>
+</code></pre></div>
+and doesn't care how the Repository knows (in this example the repository uses a boolean value stored in <a href="https://developer.android.com/training/data-storage/shared-preferences">shared preferences</a>). Shared preferences are a way to store small amounts of data quickly without requiring a database. Common use cases are small strings and booleans (like choice of color theme, whether something has been completed, etc.).</p>
+<h2 id="using-the-bitcoindevkit">Using the bitcoindevkit</h2>
+<p>We can see the library in action through the logs, for example when creating a new wallet, or when pressing the new <code>generateNewAddressButton</code> on the receive fragment:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">binding</span><span class="p">.</span><span class="na">generateNewAddressButton</span><span class="p">.</span><span class="na">setOnClickListener</span> <span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="n">Log</span><span class="p">.</span><span class="na">i</span><span class="p">(</span><span class="s">&quot;SobiWallet&quot;</span><span class="p">,</span> <span class="s">&quot;</span><span class="si">${</span><span class="n">Wallet</span><span class="p">.</span><span class="na">getNewAddress</span><span class="p">()</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">}</span>
+</code></pre></div></p>
+<h1 id="task-2-implement-receive-and-sync"><a href="https://github.com/thunderbiscuit/devkit-wallet/tree/task-sw2">Task 2</a>: Implement receive and sync</h1>
+<p>It's now time to connect the <code>Wallet</code> object to the user interface. Note how the <code>generateNewAddressButton</code> has on <code>onClickListener</code> that triggers the <code>displayNewAddress()</code> method:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// ReceiveFragment.kt</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onViewCreated</span><span class="p">(</span><span class="n">view</span><span class="p">:</span> <span class="n">View</span><span class="p">,</span> <span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span> <span class="p">{</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="k">super</span><span class="p">.</span><span class="na">onViewCreated</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="n">savedInstanceState</span><span class="p">)</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="kd">val</span> <span class="nv">navController</span> <span class="o">=</span> <span class="n">Navigation</span><span class="p">.</span><span class="na">findNavController</span><span class="p">(</span><span class="n">view</span><span class="p">)</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="n">binding</span><span class="p">.</span><span class="na">receiveToWalletButton</span><span class="p">.</span><span class="na">setOnClickListener</span> <span class="p">{</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>        <span class="n">navController</span><span class="p">.</span><span class="na">navigate</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">action_receiveFragment_to_walletFragment</span><span class="p">)</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="p">}</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="n">binding</span><span class="p">.</span><span class="na">generateNewAddressButton</span><span class="p">.</span><span class="na">setOnClickListener</span> <span class="p">{</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>        <span class="n">displayNewAddress</span><span class="p">()</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    <span class="p">}</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="p">}</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="kd">private</span> <span class="kd">fun</span> <span class="nf">displayNewAddress</span><span class="p">()</span> <span class="p">{</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>    <span class="kd">val</span> <span class="nv">newGeneratedAddress</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="n">Wallet</span><span class="p">.</span><span class="na">getNewAddress</span><span class="p">()</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>    <span class="n">Log</span><span class="p">.</span><span class="na">i</span><span class="p">(</span><span class="s">&quot;SobiWallet&quot;</span><span class="p">,</span> <span class="s">&quot;New deposit address is </span><span class="si">$</span><span class="n">newGeneratedAddress</span><span class="s">&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>    <span class="kd">val</span> <span class="nv">qrgEncoder</span><span class="p">:</span> <span class="n">QRGEncoder</span> <span class="o">=</span> <span class="n">QRGEncoder</span><span class="p">(</span><span class="n">newGeneratedAddress</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="n">QRGContents</span><span class="p">.</span><span class="na">Type</span><span class="p">.</span><span class="na">TEXT</span><span class="p">,</span> <span class="m">1000</span><span class="p">)</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>    <span class="n">qrgEncoder</span><span class="p">.</span><span class="na">colorBlack</span> <span class="o">=</span> <span class="n">ContextCompat</span><span class="p">.</span><span class="na">getColor</span><span class="p">(</span><span class="n">requireContext</span><span class="p">(),</span> <span class="n">R</span><span class="p">.</span><span class="na">color</span><span class="p">.</span><span class="na">night_1</span><span class="p">)</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>    <span class="n">qrgEncoder</span><span class="p">.</span><span class="na">colorWhite</span> <span class="o">=</span> <span class="n">ContextCompat</span><span class="p">.</span><span class="na">getColor</span><span class="p">(</span><span class="n">requireContext</span><span class="p">(),</span> <span class="n">R</span><span class="p">.</span><span class="na">color</span><span class="p">.</span><span class="na">snow_1</span><span class="p">)</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>    <span class="k">try</span> <span class="p">{</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>        <span class="kd">val</span> <span class="nv">bitmap</span> <span class="o">=</span> <span class="n">qrgEncoder</span><span class="p">.</span><span class="na">bitmap</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>        <span class="n">binding</span><span class="p">.</span><span class="na">qrCode</span><span class="p">.</span><span class="na">setImageBitmap</span><span class="p">(</span><span class="n">bitmap</span><span class="p">)</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="n">Throwable</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>        <span class="n">Log</span><span class="p">.</span><span class="na">i</span><span class="p">(</span><span class="s">&quot;SobiWallet&quot;</span><span class="p">,</span> <span class="s">&quot;Error with QRCode generator, </span><span class="si">${</span><span class="n">e</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>    <span class="p">}</span>
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>    <span class="n">binding</span><span class="p">.</span><span class="na">receiveAddress</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">newGeneratedAddress</span>
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="p">}</span>
+</code></pre></div>
+The <code>displayNewAddress()</code> method calls <code>Wallet.getNewAddress()</code> and uses the bindings on the <code>qrCode</code> (an image) and <code>receiveAddress</code> (text) views to populate the screen with the proper address.</p>
+<h2 id="qr-codes">QR codes</h2>
+<p>QR codes are generated using a library called zxing (you'll find the new dependency in the <code>/app/build.gradle.kts</code> file).</p>
+<h2 id="sync">Sync</h2>
+<p>The sync functionality is very simple (a simple <code>Wallet.sync()</code> will do). But note that we wish to update the UI to reflect the current balance upon sync. This is done using something called the viewmodel, a very common pattern in Android applications. ViewModels are a way to implement the <a href="https://www.youtube.com/watch?v=_BpmfnqjgzQ">observer pattern</a>.</p>
+<p>Take a look at the <code>WalletViewModel</code> class:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kd">class</span> <span class="nc">WalletViewModel</span><span class="p">(</span><span class="n">application</span><span class="p">:</span> <span class="n">Application</span><span class="p">)</span> <span class="p">:</span> <span class="n">AndroidViewModel</span><span class="p">(</span><span class="n">application</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="kd">public</span> <span class="kd">var</span> <span class="nv">balance</span><span class="p">:</span> <span class="n">MutableLiveData</span><span class="o">&lt;</span><span class="kt">Long</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">MutableLiveData</span><span class="p">(</span><span class="m">0</span><span class="p">)</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="kd">public</span> <span class="kd">fun</span> <span class="nf">updateBalance</span><span class="p">()</span> <span class="p">{</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>        <span class="n">Wallet</span><span class="p">.</span><span class="na">sync</span><span class="p">(</span><span class="m">100</span><span class="p">)</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>        <span class="kd">val</span> <span class="nv">newBalance</span> <span class="o">=</span> <span class="n">Wallet</span><span class="p">.</span><span class="na">getBalance</span><span class="p">()</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>        <span class="n">Log</span><span class="p">.</span><span class="na">i</span><span class="p">(</span><span class="s">&quot;SobiWallet&quot;</span><span class="p">,</span> <span class="s">&quot;New balance is </span><span class="si">$</span><span class="n">newBalance</span><span class="s">&quot;</span><span class="p">)</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>        <span class="n">balance</span><span class="p">.</span><span class="na">postValue</span><span class="p">(</span><span class="n">newBalance</span><span class="p">)</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="p">}</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="p">}</span>
+</code></pre></div></p>
+<p>Fragment and activities can simply "observe" (subscribe to) particular variables in our ViewModel, and the ViewModel will update them as this value changes. Notice the <code>balance.postValue(newBalance)</code> call (this triggers all observers to pull the new data).</p>
+<p>The code from the fragment looks like this:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">viewModel</span><span class="p">.</span><span class="na">balance</span><span class="p">.</span><span class="na">observe</span><span class="p">(</span><span class="n">viewLifecycleOwner</span><span class="p">,</span> <span class="p">{</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="kd">val</span> <span class="nv">balanceInBitcoin</span><span class="p">:</span> <span class="kt">Float</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="k">if</span> <span class="p">(</span><span class="nb">it</span> <span class="o">==</span> <span class="m">0L</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>        <span class="n">balanceInBitcoin</span> <span class="o">=</span> <span class="m">0F</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>        <span class="n">balanceInBitcoin</span> <span class="o">=</span> <span class="nb">it</span><span class="p">.</span><span class="na">toFloat</span><span class="p">().</span><span class="na">div</span><span class="p">(</span><span class="m">100</span><span class="n">_000_000</span><span class="p">)</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="p">}</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>    <span class="kd">val</span> <span class="nv">humanReadableBalance</span> <span class="o">=</span> <span class="n">DecimalFormat</span><span class="p">(</span><span class="s">&quot;0.00000000&quot;</span><span class="p">).</span><span class="na">format</span><span class="p">(</span><span class="n">balanceInBitcoin</span><span class="p">)</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    <span class="n">binding</span><span class="p">.</span><span class="na">balance</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">humanReadableBalance</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="p">})</span>
+</code></pre></div>
+This ensures that the balance displayed in the <code>balance</code> view is always up to date with the balance in the <code>WalletViewModel</code>. Easy Peasy Bitcoineesy.</p>
+<p><center>
+  <img class="screenshot" src="../images/screenshots/task-6.gif" width="300px" />
+</center></p>
+<h1 id="task-3-implement-send"><a href="https://github.com/thunderbiscuit/devkit-wallet/tree/task-sw3">Task 3</a>: Implement send</h1>
+<p>Sending bitcoin is a slightly more involved operation.</p>
+<p>The bitcoindevkit workflow for this operation is as follows:
+1. Create a transaction with proper data (amount, fee rate, adressees)
+2. Sign the transaction
+3. Extract the raw transaction
+4. Broadcast it</p>
+<p>Note that all 4 of those steps are accomplished by the <code>broadcastTransaction()</code> method of the <code>SendFragment</code>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kd">private</span> <span class="kd">fun</span> <span class="nf">broadcastTransaction</span><span class="p">()</span> <span class="p">{</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="k">try</span> <span class="p">{</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>        <span class="c1">// build required transaction information from text inputs</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>        <span class="kd">val</span> <span class="nv">feeRate</span> <span class="o">=</span> <span class="m">1F</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>        <span class="kd">val</span> <span class="nv">sendToAddress</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="n">binding</span><span class="p">.</span><span class="na">sendToAddress</span><span class="p">.</span><span class="na">text</span><span class="p">.</span><span class="na">toString</span><span class="p">().</span><span class="na">trim</span><span class="p">()</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>        <span class="kd">val</span> <span class="nv">sendAmount</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="n">binding</span><span class="p">.</span><span class="na">sendAmount</span><span class="p">.</span><span class="na">text</span><span class="p">.</span><span class="na">toString</span><span class="p">().</span><span class="na">trim</span><span class="p">()</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>        <span class="kd">val</span> <span class="nv">addressAndAmount</span><span class="p">:</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Pair</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span> <span class="kt">String</span><span class="o">&gt;&gt;</span> <span class="o">=</span> <span class="n">listOf</span><span class="p">(</span><span class="n">Pair</span><span class="p">(</span><span class="n">sendToAddress</span><span class="p">,</span> <span class="n">sendAmount</span><span class="p">))</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>        <span class="kd">val</span> <span class="nv">transactionDetails</span><span class="p">:</span> <span class="n">CreateTxResponse</span> <span class="o">=</span> <span class="n">Wallet</span><span class="p">.</span><span class="na">createTransaction</span><span class="p">(</span><span class="n">feeRate</span><span class="p">,</span> <span class="n">addressAndAmount</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">)</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>        <span class="kd">val</span> <span class="nv">signResponse</span><span class="p">:</span> <span class="n">SignResponse</span> <span class="o">=</span> <span class="n">Wallet</span><span class="p">.</span><span class="na">sign</span><span class="p">(</span><span class="n">transactionDetails</span><span class="p">.</span><span class="na">psbt</span><span class="p">)</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>        <span class="kd">val</span> <span class="nv">rawTx</span><span class="p">:</span> <span class="n">RawTransaction</span> <span class="o">=</span> <span class="n">Wallet</span><span class="p">.</span><span class="na">extractPsbt</span><span class="p">(</span><span class="n">signResponse</span><span class="p">.</span><span class="na">psbt</span><span class="p">)</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>        <span class="kd">val</span> <span class="nv">txid</span><span class="p">:</span> <span class="n">Txid</span> <span class="o">=</span> <span class="n">Wallet</span><span class="p">.</span><span class="na">broadcast</span><span class="p">(</span><span class="n">rawTx</span><span class="p">.</span><span class="na">transaction</span><span class="p">)</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>        <span class="n">Log</span><span class="p">.</span><span class="na">i</span><span class="p">(</span><span class="s">&quot;SobiWallet&quot;</span><span class="p">,</span> <span class="s">&quot;Transaction was broadcast! txid: </span><span class="si">$</span><span class="n">txid</span><span class="s">&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>        <span class="n">showSnackbar</span><span class="p">(</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>            <span class="n">requireView</span><span class="p">(),</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>            <span class="n">SnackbarLevel</span><span class="p">.</span><span class="na">SUCCESS</span><span class="p">,</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>            <span class="s">&quot;Transaction was broadcast successfully!&quot;</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a>        <span class="p">)</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a>    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="n">Throwable</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>        <span class="n">Log</span><span class="p">.</span><span class="na">i</span><span class="p">(</span><span class="s">&quot;SobiWallet&quot;</span><span class="p">,</span> <span class="s">&quot;Broadcast error: </span><span class="si">${</span><span class="n">e</span><span class="p">.</span><span class="na">message</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>        <span class="n">showSnackbar</span><span class="p">(</span>
+<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a>            <span class="n">requireView</span><span class="p">(),</span>
+<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>            <span class="n">SnackbarLevel</span><span class="p">.</span><span class="na">ERROR</span><span class="p">,</span>
+<a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>            <span class="s">&quot;Broadcast error: </span><span class="si">${</span><span class="n">e</span><span class="p">.</span><span class="na">message</span><span class="si">}</span><span class="s">&quot;</span>
+<a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a>        <span class="p">)</span>
+<a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a>    <span class="p">}</span>
+<a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a><span class="p">}</span>
+</code></pre></div></p>
+<p>The other parts of this fragment are the <code>MaterialAlertDialog</code> (which we use as a confirmation step before broadcasting the transaction):
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kd">val</span> <span class="nv">broadcastTransactionDialog</span> <span class="o">=</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    <span class="n">MaterialAlertDialogBuilder</span><span class="p">(</span><span class="k">this</span><span class="nd">@SendFragment.requireContext</span><span class="p">(),</span> <span class="n">R</span><span class="p">.</span><span class="na">style</span><span class="p">.</span><span class="na">NordDialogTheme</span><span class="p">)</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>        <span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">&quot;Confirm transaction&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>        <span class="p">.</span><span class="na">setMessage</span><span class="p">(</span><span class="n">buildConfirmTransactionMessage</span><span class="p">())</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>        <span class="p">.</span><span class="na">setPositiveButton</span><span class="p">(</span><span class="s">&quot;Broadcast&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">-&gt;</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>            <span class="n">Log</span><span class="p">.</span><span class="na">i</span><span class="p">(</span><span class="s">&quot;SobiWallet&quot;</span><span class="p">,</span> <span class="s">&quot;User is attempting to broadcast transaction&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>            <span class="n">broadcastTransaction</span><span class="p">()</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>            <span class="n">navController</span><span class="p">.</span><span class="na">navigate</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">action_sendFragment_to_walletFragment</span><span class="p">)</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>        <span class="p">}</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>        <span class="p">.</span><span class="na">setNegativeButton</span><span class="p">(</span><span class="s">&quot;Go back&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">-&gt;</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>            <span class="n">Log</span><span class="p">.</span><span class="na">i</span><span class="p">(</span><span class="s">&quot;SobiWallet&quot;</span><span class="p">,</span> <span class="s">&quot;User is not broadcasting&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>        <span class="p">}</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="n">broadcastTransactionDialog</span><span class="p">.</span><span class="na">show</span><span class="p">()</span>
+</code></pre></div></p>
+<p>And the use of snackbars to let the user know whether the transaction has successfully been broadcast of if an error was thrown while attempting to broadcast it.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">showSnackbar</span><span class="p">(</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    <span class="n">requireView</span><span class="p">(),</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    <span class="n">SnackbarLevel</span><span class="p">.</span><span class="na">ERROR</span><span class="p">,</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    <span class="s">&quot;Broadcast error: </span><span class="si">${</span><span class="n">e</span><span class="p">.</span><span class="na">message</span><span class="si">}</span><span class="s">&quot;</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="p">)</span>
+</code></pre></div>
+Take a look at <code>utilities/Snackbars.kt</code> to get a sense for how they work.</p>
+<p><center>
+  <img class="screenshot" src="../images/screenshots/task-7.gif" width="300px" />
+</center></p>
+<h1 id="task-4-add-transaction-history"><a href="https://github.com/thunderbiscuit/devkit-wallet/tree/task-sw4">Task 4</a>: Add transaction history</h1>
+<p>Adding a list of transactions is a daunting task if one is to take it to a polished result. It involves using a database and keeping track on transactions, their state, and performing calculations on the raw material that the bitcoindevkit provides. This is slightly outside of the scope of this workshop. Simply displaying the list of transactions as one long string (with some small modifications), however, is quite easy, and this is what this wallet implements.</p>
+<p>Note that the <code>transactionsView</code> is simply a <code>NestedScrollView</code> that displays a string built by the <code>transactionsList()</code> method. Creating the <code>confirmationTime</code> string variable is the most involved part of this whole endeavor, and is done using a neat Kotlin feature called <em>extension functions</em>, where we define a method on the bitcoindevkit type <code>ConfirmationTime</code> which returns a nicely formatted timestamp. Take a look at the <code>utilities/Timestamps.kt</code> file for more on this function. Building the string is otherwise a rather simple affair; the bitcoindevkit returns a list of <code>TransactionDetails</code> through the <code>listTransactions()</code> method, and we parse them one by one and pull the interesting things into a string template.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onViewCreated</span><span class="p">(</span><span class="n">view</span><span class="p">:</span> <span class="n">View</span><span class="p">,</span> <span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span> <span class="p">{</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="k">super</span><span class="p">.</span><span class="na">onViewCreated</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="n">savedInstanceState</span><span class="p">)</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="n">binding</span><span class="p">.</span><span class="na">transactionsView</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">transactionList</span><span class="p">()</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="kd">val</span> <span class="nv">navController</span> <span class="o">=</span> <span class="n">Navigation</span><span class="p">.</span><span class="na">findNavController</span><span class="p">(</span><span class="n">view</span><span class="p">)</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>    <span class="n">binding</span><span class="p">.</span><span class="na">transactionsToWalletButton</span><span class="p">.</span><span class="na">setOnClickListener</span> <span class="p">{</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>        <span class="n">navController</span><span class="p">.</span><span class="na">navigate</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">action_transactionsFragment_to_walletFragment</span><span class="p">)</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>    <span class="p">}</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="p">}</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="kd">private</span> <span class="kd">fun</span> <span class="nf">transactionList</span><span class="p">():</span> <span class="kt">String</span> <span class="p">{</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>    <span class="kd">val</span> <span class="nv">rawList</span><span class="p">:</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">TransactionDetails</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">Wallet</span><span class="p">.</span><span class="na">listTransactions</span><span class="p">()</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>    <span class="kd">var</span> <span class="nv">finalList</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>    <span class="k">for</span> <span class="p">(</span><span class="n">item</span> <span class="k">in</span> <span class="n">rawList</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>        <span class="n">Log</span><span class="p">.</span><span class="na">i</span><span class="p">(</span><span class="s">&quot;SobiWallet&quot;</span><span class="p">,</span> <span class="s">&quot;Transaction list item: </span><span class="si">$</span><span class="n">item</span><span class="s">&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>        <span class="kd">val</span> <span class="nv">confirmationTime</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="n">item</span><span class="p">.</span><span class="na">confirmation_time</span><span class="o">?.</span><span class="na">timestampToString</span><span class="p">()</span> <span class="o">?:</span> <span class="s">&quot;Pending&quot;</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>        <span class="kd">val</span> <span class="nv">transactionInfo</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span>
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>            <span class="s">&quot;Timestamp: </span><span class="si">${</span><span class="n">confirmationTime</span><span class="si">}</span><span class="s">\nReceived: </span><span class="si">${</span><span class="n">item</span><span class="p">.</span><span class="na">received</span><span class="si">}</span><span class="s">\nSent: </span><span class="si">${</span><span class="n">item</span><span class="p">.</span><span class="na">sent</span><span class="si">}</span><span class="s">\nFees: </span><span class="si">${</span><span class="n">item</span><span class="p">.</span><span class="na">fee</span><span class="si">}</span><span class="s">\nTxid: </span><span class="si">${</span><span class="n">item</span><span class="p">.</span><span class="na">txid</span><span class="si">}</span><span class="s">&quot;</span>
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>        <span class="n">finalList</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">$</span><span class="n">finalList</span><span class="s">\n</span><span class="si">$</span><span class="n">transactionInfo</span><span class="s">\n&quot;</span>
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>    <span class="p">}</span>
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>    <span class="k">return</span> <span class="n">finalList</span>
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="p">}</span>
+</code></pre></div>
+<p><center>
+  <img class="screenshot" src="../images/screenshots/transaction-history.png" width="300px" />
+</center></p>
+<h1 id="task-5-display-recovery-phrase"><a href="https://github.com/thunderbiscuit/devkit-wallet/tree/task-sw5">Task 5</a>: Display recovery phrase</h1>
+<p>Displaying the recovery phrase to the user is not a complicated task. Remember that we have stored the recovery phrase in shared preferences when creating the wallet
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kd">fun</span> <span class="nf">createWallet</span><span class="p">():</span> <span class="kt">Unit</span> <span class="p">{</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    <span class="kd">val</span> <span class="nv">keys</span><span class="p">:</span> <span class="n">ExtendedKey</span> <span class="o">=</span> <span class="n">generateExtendedKey</span><span class="p">()</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    <span class="kd">val</span> <span class="nv">descriptor</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="n">createDescriptor</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="kd">val</span> <span class="nv">changeDescriptor</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="n">createChangeDescriptor</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    <span class="n">initialize</span><span class="p">(</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>        <span class="n">descriptor</span> <span class="o">=</span> <span class="n">descriptor</span><span class="p">,</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>        <span class="n">changeDescriptor</span> <span class="o">=</span> <span class="n">changeDescriptor</span><span class="p">,</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>    <span class="p">)</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>    <span class="n">Repository</span><span class="p">.</span><span class="na">saveWallet</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">descriptor</span><span class="p">,</span> <span class="n">changeDescriptor</span><span class="p">)</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>    <span class="n">Repository</span><span class="p">.</span><span class="na">saveMnemonic</span><span class="p">(</span><span class="n">keys</span><span class="p">.</span><span class="na">mnemonic</span><span class="p">)</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="p">}</span>
+</code></pre></div>
+Retreiving the recovery phrase is a simple call to the repository, which has a <code>getMnemonic()</code> method defined:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kd">fun</span> <span class="nf">getMnemonic</span><span class="p">():</span> <span class="kt">String</span> <span class="p">{</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    <span class="k">return</span> <span class="n">sharedPreferences</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="s">&quot;mnemonic&quot;</span><span class="p">,</span> <span class="s">&quot;No seed phrase saved&quot;</span><span class="p">)</span> <span class="o">?:</span> <span class="s">&quot;Seed phrase not there&quot;</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="p">}</span>
+</code></pre></div></p>
+<p>Upon creating the fragment, the <code>getMnemonic()</code> method is simply called to populate the recoveryPhrase text view:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1">// RecoveryPhraseFragment.kt</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="kd">override</span> <span class="kd">fun</span> <span class="nf">onViewCreated</span><span class="p">(</span><span class="n">view</span><span class="p">:</span> <span class="n">View</span><span class="p">,</span> <span class="n">savedInstanceState</span><span class="p">:</span> <span class="n">Bundle?)</span> <span class="p">{</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="k">super</span><span class="p">.</span><span class="na">onViewCreated</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="n">savedInstanceState</span><span class="p">)</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>    <span class="n">binding</span><span class="p">.</span><span class="na">recoveryPhrase</span><span class="p">.</span><span class="na">text</span> <span class="o">=</span> <span class="n">Repository</span><span class="p">.</span><span class="na">getMnemonic</span><span class="p">()</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="p">}</span>
+</code></pre></div></p>
+<p><center>
+  <img class="screenshot" src="../images/screenshots/recovery-phrase.png" width="300px" />
+</center></p>
+<h1 id="task-6-enable-wallet-recovery"><a href="https://github.com/thunderbiscuit/devkit-wallet/tree/task-sw6">Task 6</a>: Enable wallet recovery</h1>
+<p>Enabling wallet recovery is not complicated from the bitcoindevkit point of view, but does require a bit of work on the Android side of things. Note for example that so far, the <code>WalletChoiceActivity</code> does not contain any fragments. But here we'll need to add a screen for entering the 12 word recovery phrase, and so the first thing we need to do is create a <code>NavHostFragment</code> in the <code>WalletChoiceActivity</code>, complete with 2 fragments: our original screen and a wallet recovery screen. We also need to build a <code>nav_wallet_choice.xml</code> file, for navigating between the first and second fragments.</p>
+<p>You'll note that the <code>fragment_recover.xml</code> layout file is a <code>ConstraintLayout</code> with a <code>NestedScrollView</code>, itself containing a <code>LinearLayout</code> which is the parent for all 12 <code>EditText</code> views where the user can input their mnemonic words. This allows for the list of words to be scrollable and ensures it shows well on all screen sizes.</p>
+<p>The <code>RecoverWalletFragment</code> is one of our longest Kotlin file, but it really comes down to two methods used in the listener for the <code>recoverWalletButton</code>, namely <code>checkWords()</code> and <code>buildRecoveryPhrase()</code>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1">// RecoverWalletFragment.kt</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">binding</span><span class="p">.</span><span class="na">recoverWalletButton</span><span class="p">.</span><span class="na">setOnClickListener</span> <span class="p">{</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="k">if</span> <span class="p">(</span><span class="n">checkWords</span><span class="p">())</span> <span class="p">{</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>        <span class="kd">val</span> <span class="nv">recoveryPhraseString</span> <span class="o">=</span> <span class="n">buildRecoveryPhrase</span><span class="p">()</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>        <span class="n">Wallet</span><span class="p">.</span><span class="na">recoverWallet</span><span class="p">(</span><span class="n">recoveryPhraseString</span><span class="p">)</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>        <span class="c1">// launch home activity</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>        <span class="kd">val</span> <span class="nv">intent</span><span class="p">:</span> <span class="n">Intent</span> <span class="o">=</span> <span class="n">Intent</span><span class="p">(</span><span class="k">this</span><span class="nd">@RecoverWalletFragment.context</span><span class="p">,</span> <span class="n">WalletActivity</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">)</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>        <span class="n">startActivity</span><span class="p">(</span><span class="n">intent</span><span class="p">)</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>        <span class="n">Log</span><span class="p">.</span><span class="na">i</span><span class="p">(</span><span class="s">&quot;SobiWallet&quot;</span><span class="p">,</span> <span class="s">&quot;Recovery phrase was invalid&quot;</span><span class="p">)</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>    <span class="p">}</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="p">}</span>
+</code></pre></div></p>
+<p>The <code>checkWords</code> method verifies whether the words provided are (a) not empty, and (b) part of the list of 2048 words defined in the English version of the BIP39 wordlist. It uses error snackbars to let the user know if any of the word inputs has any problems:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kd">private</span> <span class="kd">fun</span> <span class="nf">checkWords</span><span class="p">():</span> <span class="kt">Boolean</span> <span class="p">{</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>    <span class="kd">val</span> <span class="nv">mnemonicWordsTextViews</span><span class="p">:</span> <span class="n">List</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">listOfNotNull</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">(</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>        <span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">word1</span><span class="p">,</span> <span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">word2</span><span class="p">,</span> <span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">word3</span><span class="p">,</span> <span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">word4</span><span class="p">,</span> <span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">word5</span><span class="p">,</span> <span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">word6</span><span class="p">,</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>        <span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">word7</span><span class="p">,</span> <span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">word8</span><span class="p">,</span> <span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">word9</span><span class="p">,</span> <span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">word10</span><span class="p">,</span> <span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">word11</span><span class="p">,</span> <span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">word12</span><span class="p">,</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>    <span class="p">)</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>    <span class="k">for</span> <span class="p">(</span><span class="n">word</span> <span class="k">in</span> <span class="m">0.</span><span class="p">.</span><span class="m">11</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>        <span class="kd">val</span> <span class="nv">mnemonicWord</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="n">requireView</span><span class="p">().</span><span class="na">findViewById</span><span class="o">&lt;</span><span class="n">TextView</span><span class="o">&gt;</span><span class="p">(</span><span class="n">mnemonicWordsTextViews</span><span class="o">[</span><span class="n">word</span><span class="o">]</span><span class="p">).</span><span class="na">text</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>            <span class="p">.</span><span class="na">trim</span><span class="p">().</span><span class="na">lowercase</span><span class="p">(</span><span class="n">Locale</span><span class="p">.</span><span class="na">getDefault</span><span class="p">())</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>        <span class="n">Log</span><span class="p">.</span><span class="na">i</span><span class="p">(</span><span class="s">&quot;SobiWallet&quot;</span><span class="p">,</span> <span class="s">&quot;Verifying word </span><span class="si">$</span><span class="n">word</span><span class="s">: </span><span class="si">$</span><span class="n">mnemonicWord</span><span class="s">&quot;</span><span class="p">)</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>        <span class="k">when</span> <span class="p">{</span>
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>            <span class="n">mnemonicWord</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">{</span>
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>                <span class="n">Log</span><span class="p">.</span><span class="na">i</span><span class="p">(</span><span class="s">&quot;SobiWallet&quot;</span><span class="p">,</span> <span class="s">&quot;Word #</span><span class="si">$</span><span class="n">word</span><span class="s"> is empty!&quot;</span><span class="p">)</span>
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>                <span class="n">showSnackbar</span><span class="p">(</span>
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>                    <span class="n">requireView</span><span class="p">(),</span>
+<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>                    <span class="n">SnackbarLevel</span><span class="p">.</span><span class="na">ERROR</span><span class="p">,</span>
+<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a>                    <span class="s">&quot;Word #</span><span class="si">${</span><span class="n">word</span> <span class="o">+</span> <span class="m">1</span><span class="si">}</span><span class="s"> is empty!&quot;</span>
+<a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a>                <span class="p">)</span>
+<a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a>                <span class="k">return</span> <span class="kc">false</span>
+<a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a>            <span class="p">}</span>
+<a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a>            <span class="n">mnemonicWord</span> <span class="k">!in</span> <span class="k">this</span><span class="p">.</span><span class="na">wordList</span> <span class="o">-&gt;</span> <span class="p">{</span>
+<a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a>                <span class="n">Log</span><span class="p">.</span><span class="na">i</span><span class="p">(</span><span class="s">&quot;SobiWallet&quot;</span><span class="p">,</span> <span class="s">&quot;Word #</span><span class="si">$</span><span class="n">word</span><span class="s">, </span><span class="si">$</span><span class="n">mnemonicWord</span><span class="s">, is not valid!&quot;</span><span class="p">)</span>
+<a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a>                <span class="n">showSnackbar</span><span class="p">(</span>
+<a id="__codelineno-16-25" name="__codelineno-16-25" href="#__codelineno-16-25"></a>                    <span class="n">requireView</span><span class="p">(),</span>
+<a id="__codelineno-16-26" name="__codelineno-16-26" href="#__codelineno-16-26"></a>                    <span class="n">SnackbarLevel</span><span class="p">.</span><span class="na">ERROR</span><span class="p">,</span>
+<a id="__codelineno-16-27" name="__codelineno-16-27" href="#__codelineno-16-27"></a>                    <span class="s">&quot;Word #</span><span class="si">${</span><span class="n">word</span> <span class="o">+</span> <span class="m">1</span><span class="si">}</span><span class="s"> is invalid!&quot;</span>
+<a id="__codelineno-16-28" name="__codelineno-16-28" href="#__codelineno-16-28"></a>                <span class="p">)</span>
+<a id="__codelineno-16-29" name="__codelineno-16-29" href="#__codelineno-16-29"></a>                <span class="k">return</span> <span class="kc">false</span>
+<a id="__codelineno-16-30" name="__codelineno-16-30" href="#__codelineno-16-30"></a>            <span class="p">}</span>
+<a id="__codelineno-16-31" name="__codelineno-16-31" href="#__codelineno-16-31"></a>            <span class="k">else</span> <span class="o">-&gt;</span> <span class="p">{</span>
+<a id="__codelineno-16-32" name="__codelineno-16-32" href="#__codelineno-16-32"></a>                <span class="n">Log</span><span class="p">.</span><span class="na">i</span><span class="p">(</span><span class="s">&quot;SobiWallet&quot;</span><span class="p">,</span> <span class="s">&quot;Word #</span><span class="si">$</span><span class="n">word</span><span class="s">, </span><span class="si">$</span><span class="n">mnemonicWord</span><span class="s">, is valid&quot;</span><span class="p">)</span>
+<a id="__codelineno-16-33" name="__codelineno-16-33" href="#__codelineno-16-33"></a>            <span class="p">}</span>
+<a id="__codelineno-16-34" name="__codelineno-16-34" href="#__codelineno-16-34"></a>        <span class="p">}</span>
+<a id="__codelineno-16-35" name="__codelineno-16-35" href="#__codelineno-16-35"></a>    <span class="p">}</span>
+<a id="__codelineno-16-36" name="__codelineno-16-36" href="#__codelineno-16-36"></a>    <span class="k">return</span> <span class="kc">true</span>
+<a id="__codelineno-16-37" name="__codelineno-16-37" href="#__codelineno-16-37"></a><span class="p">}</span>
+</code></pre></div></p>
+<p>The <code>buildRecoveryPhrase()</code> simply brings all the text inputs into one string, and returns it so it can be used by the <code>Wallet</code> class for the recovery:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1">// Wallet.kt</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="kd">fun</span> <span class="nf">recoverWallet</span><span class="p">(</span><span class="n">mnemonic</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>    <span class="kd">val</span> <span class="nv">keys</span><span class="p">:</span> <span class="n">ExtendedKey</span> <span class="o">=</span> <span class="n">restoreExtendedKeyFromMnemonic</span><span class="p">(</span><span class="n">mnemonic</span><span class="p">)</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>    <span class="kd">val</span> <span class="nv">descriptor</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="n">createDescriptor</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>    <span class="kd">val</span> <span class="nv">changeDescriptor</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="n">createChangeDescriptor</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>    <span class="n">initialize</span><span class="p">(</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>        <span class="n">descriptor</span> <span class="o">=</span> <span class="n">descriptor</span><span class="p">,</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>        <span class="n">changeDescriptor</span> <span class="o">=</span> <span class="n">changeDescriptor</span><span class="p">,</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>    <span class="p">)</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>    <span class="n">Repository</span><span class="p">.</span><span class="na">saveWallet</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">descriptor</span><span class="p">,</span> <span class="n">changeDescriptor</span><span class="p">)</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>    <span class="n">Repository</span><span class="p">.</span><span class="na">saveMnemonic</span><span class="p">(</span><span class="n">keys</span><span class="p">.</span><span class="na">mnemonic</span><span class="p">)</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="p">}</span>
+</code></pre></div></p>
+<p><center>
+  <img class="screenshot" src="../images/screenshots/recover.png" width="300px" />
+</center></p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../ui/" class="md-footer__link md-footer__link--prev" aria-label="Previous: User Interface" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              User Interface
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.22074ed6.min.js"}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.960e086b.min.js"></script>
+      
+    
+  </body>
+</html>
